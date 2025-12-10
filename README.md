@@ -9,7 +9,7 @@ pynput
 # Installation
 1. Clone the repository:
 ```bash
-    gh repo clone sprsrr/Sys_Input_Monitor
+    gh repo clone jacobbeason/Sys_Input_Monitor
 ```
 2. Create Virtual Environment :
 ```bash
