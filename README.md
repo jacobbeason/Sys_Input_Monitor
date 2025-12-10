@@ -8,11 +8,18 @@ pynput
 
 # Installation
 1. Clone the repository:
-  https://github.com/sprsrr/Sys_Input_Monitor.git
+```bash
+    gh repo clone sprsrr/Sys_Input_Monitor
+```
 2. Create Virtual Environment :
-  python -m venv venv
-  source venv/bin/activate  # On Windows: venv\Scripts\activate
-3. Install pynput:
-  pip install pynput
+```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
+
+3. Install pynput:
+```bash
+    pip install pynput
+```
 
