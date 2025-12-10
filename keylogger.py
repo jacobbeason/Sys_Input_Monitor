@@ -1,8 +1,8 @@
 # Jacob Beason
 # Created - 12/9/25
 # Last Modified - 12/9/25
-# This program asks the user for consent to begin logging, logs keystrokes using the pynput lib and saves them to a txt file, then using SMTP, sends the file to an email address on a desired interval.
-# This program was created for solely educational purposes to gain a deeper understanding of how keylogging could be used to take advantage of vunerable systems and how SMTP can be automated.
+# This program asks the user for consent to begin logging, logs keystrokes using pynput and saves them to a txt file called keylog.txt, then, using SMTP, sends the file to an email address specified by the user on a desired interval.
+# This program was created for solely educational purposes to gain a deeper understanding of how keylogging could be used by attackers to harvest sensitve data from vunerable systems and how SMTP can be automated.
 
 import smtplib
 from pynput import keyboard
@@ -127,7 +127,7 @@ if __name__ == "__main__":
         exit()
     
     
-    # User information
+    # User input
     SENDER_EMAIL = input("Sender Email - ")
     SENDER_PASSWORD = input("Sender Password (Use Gmail app password) - ") # Use Gmail app password
     RECIPIENT_EMAIL = input("Recipient Email - ")
